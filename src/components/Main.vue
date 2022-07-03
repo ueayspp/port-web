@@ -1,86 +1,39 @@
 <template>
-  <nav class="text-3xl font-bold">To-do list</nav>
-  <div class="flex flex-col items-center">
-    <table class="table auto">
-      <thead>
-        <tr>
-          <th>Status</th>
-          <th>Title</th>
-          <th>Date Created</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td></td>
-          <td>Hello Vue</td>
-          <td>{{ globDate() }}</td>
-          <td>
-            <button
-              class="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-full"
-            >
-              edit
-            </button>
-          </td>
-          <td>
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-full">
-              delete
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Hello React</td>
-          <td>{{ globDate() }}</td>
-          <td>
-            <button
-              class="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-full"
-            >
-              edit
-            </button>
-          </td>
-          <td>
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-full">
-              delete
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Hello Angular</td>
-          <td>{{ globDate() }}</td>
-          <td>
-            <button
-              class="bg-emerald-500 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-full"
-            >
-              edit
-            </button>
-          </td>
-          <td>
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-3 rounded-full">
-              delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</template>
+  <header class="px-5 py-3">
+    <nav class="flex justify-between">
+      <div>
+        <a class="text-2xl" href=""><span>DearDiary</span></a>
+      </div>
+      <div>
+        <ul class="flex flex-row sm:gap-5 lg:gap-10">
+          <li><a class="hover:text-emerald-700" href="">Features</a></li>
+          <li><a class="hover:text-emerald-700" href="">Prices</a></li>
+          <li><a class="hover:text-emerald-700" href="">About</a></li>
+          <li><a class="hover:text-emerald-700" href="">Contacts</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <body>
+    <div class="flex mx-10">
+      <div class="bg-emerald-100 rounded-md sm:max-w-3xl md:max-w-5xl lg:max-w-7xl pb-10">
+        <h1 class="sm:text-4xl lg:text-5xl text-center font-semibold pt-20 pb-10">
+          Take a note everywhere with DearDiary
+        </h1>
+        <p class="text-2xl text-start px-20 font-medium">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+          ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+        <br />
+        <button
+          class="text-xl text-white font-bold px-4 py-4 rounded-full bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500"
+        >
+          Download
+        </button>
+      </div>
+    </div>
 
-<script>
-export default {
-  data() {
-    return {
-      date: new Date().getDate(),
-      month: new Date().getMonth(),
-      year: new Date().getFullYear(),
-    }
-  },
-  methods: {
-    globDate() {
-      return `${this.date}/${this.month}/${this.year}`
-    },
-  },
-}
-</script>
+    <div></div>
+  </body>
+</template>
