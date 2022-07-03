@@ -25,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
     name: 'main',
     component: () => import('@/components/Main.vue'),
   },
+  {
+    path: '/landingPage',
+    name: 'landingPage',
+    component: () => import('@/components/LandingPage.vue'),
+  },
 ]
 
 const router = createRouter({
