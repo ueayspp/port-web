@@ -5,6 +5,9 @@
 
 <script>
 import Navbar from '@/components/Navbar.vue'
+import Cookies from 'js-cookie'
+
+Cookies.get()
 
 export default {
   components: {

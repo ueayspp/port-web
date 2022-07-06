@@ -81,14 +81,14 @@
       <nav
         class="items-center justify-center hidden space-x-8 text-sm font-medium lg:flex lg:flex-1 lg:w-0"
       >
-        <a class="text-gray-900" href="">Diary</a>
-        <a class="text-gray-900" href="">To-do list</a>
-        <a class="text-gray-900" href="">Shortnote</a>
-        <a class="text-gray-900" href="">Planner</a>
+        <a class="text-gray-900" href="/main">Diary</a>
+        <a class="text-gray-900" href="/todolist">To-do list</a>
+        <a class="text-gray-900" href="/shortnote">Shortnote</a>
+        <a class="text-gray-900" href="/planner">Planner</a>
       </nav>
 
       <div class="items-center hidden space-x-4 lg:flex">
-        <a class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg" href="">
+        <a class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg" href="/login">
           Log out
         </a>
       </div>
@@ -96,10 +96,10 @@
 
     <div class="border-t border-gray-100 lg:hidden">
       <nav class="flex items-center justify-center p-4 overflow-x-auto text-sm font-medium">
-        <a class="flex-shrink-0 pl-4 text-gray-900" href="">Diary</a>
-        <a class="flex-shrink-0 pl-4 text-gray-900" href="">To-do list</a>
-        <a class="flex-shrink-0 pl-4 text-gray-900" href="">Shortnote</a>
-        <a class="flex-shrink-0 pl-4 text-gray-900" href="">Planner</a>
+        <a class="flex-shrink-0 pl-4 text-gray-900" href="/main">Diary</a>
+        <a class="flex-shrink-0 pl-4 text-gray-900" href="/todolist">To-do list</a>
+        <a class="flex-shrink-0 pl-4 text-gray-900" href="/shortnote">Shortnote</a>
+        <a class="flex-shrink-0 pl-4 text-gray-900" href="/planner">Planner</a>
       </nav>
     </div>
   </header>

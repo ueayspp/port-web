@@ -25,8 +25,7 @@
 
           <div class="relative mt-1">
             <input
-              type="email"
-              id="email"
+              v-model.trim="email"
               class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
               placeholder="Enter email"
             />
@@ -55,8 +54,7 @@
 
           <div class="relative mt-1">
             <input
-              type="password"
-              id="password"
+              v-model.trim="password"
               class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
               placeholder="Enter password"
             />
@@ -87,8 +85,9 @@
         </div>
 
         <button
-          type="submit"
+          type="button"
           class="block w-full px-5 py-3 text-sm font-medium text-white bg-emerald-600 rounded-lg"
+          @click="btnSignin_click"
         >
           Sign in
         </button>
@@ -98,6 +97,41 @@
           <a class="underline" href="">Sign up</a>
         </p>
       </form>
+
+      <p>Email: {{ email }} Password: {{ password }}</p>
     </div>
   </div>
 </template>
+
+<script>
+import Cookies from 'js-cookie'
+
+export default {
+  data() {
+    return {
+      email: '',
+      password: '',
+    }
+  },
+  methods: {
+    b64EncodeUnicode(str) {
+      return btoa(str)
+    },
+    btnSignin_click() {
+      var email_user = this.email
+      var pass_user = this.password
+      if (
+        email_user === process.env.VUE_APP_USERNAME &&
+        pass_user === process.env.VUE_APP_PASSWORD
+      ) {
+        const token = this.b64EncodeUnicode(email_user)
+        alert(`Hello World`)
+        Cookies.set('access_token', token, { expires: 1 })
+      }
+    },
+  },
+  mounted() {
+    console.log('env, ')
+  },
+}
+</script>

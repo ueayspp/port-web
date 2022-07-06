@@ -1,11 +1,13 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import DiaryView from '@/views/DiaryView.vue'
+import { authGuard } from './auth-guard'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: DiaryView,
   },
   {
     path: '/about',
@@ -34,6 +36,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/shortnote',
     name: 'shortnote',
     component: () => import('@/components/Shortnote.vue'),
+    beforeEnter: (to, from, next) => authGuard(to, from, next),
   },
   {
     path: '/planner',
