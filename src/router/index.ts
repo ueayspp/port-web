@@ -25,6 +25,21 @@ const routes: Array<RouteRecordRaw> = [
     name: 'main',
     component: () => import('@/components/Main.vue'),
   },
+  {
+    path: '/todolist',
+    name: 'todolist',
+    component: () => import('@/components/ToDoList.vue'),
+  },
+  {
+    path: '/shortnote',
+    name: 'shortnote',
+    component: () => import('@/components/Shortnote.vue'),
+  },
+  {
+    path: '/planner',
+    name: 'planner',
+    component: () => import('@/components/Planner.vue'),
+  },
 ]
 
 const router = createRouter({

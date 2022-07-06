@@ -1,57 +1,103 @@
 <template>
-  <div
-    class="flex items-center justify-center h-screen bg-gradient-to-tr from-green-200 to-blue-300"
-  >
-    <form class="space-y-8 px-32 py-28 bg-white rounded-md" action="#">
-      <h5 class="text-3xl mb-10 font-bold text-gray-900">Welcome!</h5>
-      <div>
-        <label for="email" class="block mb-2 text-md text-start font-medium text-gray-900"
-          >Your email</label
-        >
-        <input
-          id="email"
-          type="email"
-          name="email"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-          placeholder="name@hotmail.com"
-        />
-      </div>
-      <div>
-        <label for="password" class="block mb-2 text-md text-start font-medium text-gray-900"
-          >Your password</label
-        >
-        <input
-          id="password"
-          type="password"
-          name="password"
-          placeholder="••••••••"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        />
-      </div>
-      <div class="flex items-start">
-        <div class="flex items-start">
-          <div class="flex items-center h-5">
+  <!--
+  This component uses @tailwindcss/forms
+
+  yarn add @tailwindcss/forms
+  npm install @tailwindcss/forms
+
+  plugins: [require('@tailwindcss/forms')]
+-->
+
+  <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-lg mx-auto">
+      <h1 class="text-2xl font-bold text-center text-emerald-600 sm:text-3xl">Get started today</h1>
+
+      <p class="max-w-md mx-auto mt-4 text-center text-gray-500">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati sunt dolores deleniti
+        inventore quaerat mollitia?
+      </p>
+
+      <form action="" class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl">
+        <p class="text-lg font-medium">Sign in to your account</p>
+
+        <div>
+          <label for="email" class="text-sm font-medium">Email</label>
+
+          <div class="relative mt-1">
             <input
-              id="remember"
-              type="checkbox"
-              value=""
-              class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300"
+              type="email"
+              id="email"
+              class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+              placeholder="Enter email"
             />
+
+            <span class="absolute inset-y-0 inline-flex items-center right-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                />
+              </svg>
+            </span>
           </div>
-          <label for="remember" class="ml-2 text-sm font-medium text-gray-900">Remember me</label>
         </div>
-        <a href="#" class="ml-auto text-sm text-blue-700 hover:underline">Forgot Password?</a>
-      </div>
-      <button
-        type="submit"
-        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-      >
-        Login to your account
-      </button>
-      <div class="text-sm font-medium text-gray-500">
-        Not registered?
-        <a href="#" class="text-blue-700 hover:underline">Create account</a>
-      </div>
-    </form>
+
+        <div>
+          <label for="password" class="text-sm font-medium">Password</label>
+
+          <div class="relative mt-1">
+            <input
+              type="password"
+              id="password"
+              class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+              placeholder="Enter password"
+            />
+
+            <span class="absolute inset-y-0 inline-flex items-center right-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="block w-full px-5 py-3 text-sm font-medium text-white bg-emerald-600 rounded-lg"
+        >
+          Sign in
+        </button>
+
+        <p class="text-sm text-center text-gray-500">
+          No account?
+          <a class="underline" href="">Sign up</a>
+        </p>
+      </form>
+    </div>
   </div>
 </template>

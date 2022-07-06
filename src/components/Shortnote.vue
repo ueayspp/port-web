@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <div class="font-xl">This is diary page</div>
+  <div class="font-xl">This is shortnote page</div>
 </template>
 
 <script>
