@@ -1,18 +1,17 @@
 <template>
   <Navbar />
   <router-view />
-  <Diary />
+  <Shortnote />
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue'
-import Diary from '@/components/Diary.vue'
+import Shortnote from '@/components/Shortnote.vue'
 
 export default {
-  name: 'DiaryView',
   components: {
     Navbar,
-    Diary,
+    Shortnote,
   },
 }
 </script>

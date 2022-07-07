@@ -1,18 +1,17 @@
 <template>
   <Navbar />
   <router-view />
-  <Diary />
+  <ToDoList />
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue'
-import Diary from '@/components/Diary.vue'
+import ToDoList from '@/components/ToDoList.vue'
 
 export default {
-  name: 'DiaryView',
   components: {
     Navbar,
-    Diary,
+    ToDoList,
   },
 }
 </script>

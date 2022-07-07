@@ -1,17 +1,17 @@
 <template>
   <Navbar />
-  <div class="font-xl">This is diary page</div>
+  <router-view />
+  <Planner />
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue'
-import Cookies from 'js-cookie'
-
-Cookies.get()
+import Planner from '@/components/Planner.vue'
 
 export default {
   components: {
     Navbar,
+    Planner,
   },
 }
 </script>

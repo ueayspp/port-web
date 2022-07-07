@@ -1,17 +1,7 @@
 <template>
-  <Navbar />
-  <div class="font-xl">This is to-do list page</div>
+  <h1 class="text-lg font-medium">This is to-do list page</h1>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
-import Cookies from 'js-cookie'
-
-Cookies.get()
-
-export default {
-  components: {
-    Navbar,
-  },
-}
+export default {}
 </script>

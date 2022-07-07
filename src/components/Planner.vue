@@ -1,17 +1,3 @@
 <template>
-  <Navbar />
-  <div class="font-xl">This is planner page</div>
+  <h1 class="text-lg font-medium">This is planner page</h1>
 </template>
-
-<script>
-import Navbar from '@/components/Navbar.vue'
-import Cookies from 'js-cookie'
-
-Cookies.get()
-
-export default {
-  components: {
-    Navbar,
-  },
-}
-</script>

@@ -30,9 +30,9 @@
       </div>
 
       <div class="flex items-center space-x-4">
-        <span class="w-20 h-10 bg-gray-200 rounded-lg"></span>
+        <span class="w-20 h-10 bg-green-200 rounded-lg">logo</span>
 
-        <form class="hidden mb-0 lg:flex">
+        <!-- <form class="hidden mb-0 lg:flex">
           <div class="relative">
             <input
               class="h-10 pr-10 text-sm placeholder-gray-300 border-gray-200 rounded-lg focus:z-10"
@@ -58,7 +58,7 @@
               </svg>
             </button>
           </div>
-        </form>
+        </form> -->
       </div>
 
       <div class="flex justify-end flex-1 w-0 lg:hidden">
@@ -81,26 +81,33 @@
       <nav
         class="items-center justify-center hidden space-x-8 text-sm font-medium lg:flex lg:flex-1 lg:w-0"
       >
-        <a class="text-gray-900" href="/main">Diary</a>
-        <a class="text-gray-900" href="/todolist">To-do list</a>
-        <a class="text-gray-900" href="/shortnote">Shortnote</a>
-        <a class="text-gray-900" href="/planner">Planner</a>
+        <router-link to="/main">Diary</router-link>
+        <router-link to="/todolist">To-do list</router-link>
+        <router-link to="/shortnote">Shortnote</router-link>
+        <router-link to="/planner">Planner</router-link>
+        <!-- <a class="text-gray-900 hover:text-green-600" href="/main">Diary</a>
+        <a class="text-gray-900 hover:text-green-600" href="/todolist">To-do list</a>
+        <a class="text-gray-900 hover:text-green-600" href="/shortnote">Shortnote</a>
+        <a class="text-gray-900 hover:text-green-600" href="/planner">Planner</a> -->
       </nav>
 
       <div class="items-center hidden space-x-4 lg:flex">
-        <a class="px-5 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg" href="/login">
+        <a
+          class="px-5 py-2 text-sm font-semibold text-gray-600 bg-gray-100 hover:text-green-600 hover:bg-gray-300 rounded-lg"
+          href="/login"
+        >
           Log out
         </a>
       </div>
     </div>
 
-    <div class="border-t border-gray-100 lg:hidden">
+    <!-- <div class="border-t border-gray-100 lg:hidden">
       <nav class="flex items-center justify-center p-4 overflow-x-auto text-sm font-medium">
         <a class="flex-shrink-0 pl-4 text-gray-900" href="/main">Diary</a>
         <a class="flex-shrink-0 pl-4 text-gray-900" href="/todolist">To-do list</a>
         <a class="flex-shrink-0 pl-4 text-gray-900" href="/shortnote">Shortnote</a>
         <a class="flex-shrink-0 pl-4 text-gray-900" href="/planner">Planner</a>
       </nav>
-    </div>
+    </div> -->
   </header>
 </template>

@@ -25,25 +25,25 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/main',
     name: 'main',
-    component: () => import('@/components/Main.vue'),
+    component: () => import('@/views/DiaryView.vue'),
     beforeEnter: (to, from, next) => authGuard(to, from, next),
   },
   {
     path: '/todolist',
     name: 'todolist',
-    component: () => import('@/components/ToDoList.vue'),
+    component: () => import('@/views/ToDoListView.vue'),
     beforeEnter: (to, from, next) => authGuard(to, from, next),
   },
   {
     path: '/shortnote',
     name: 'shortnote',
-    component: () => import('@/components/Shortnote.vue'),
+    component: () => import('@/views/ShortnoteView.vue'),
     beforeEnter: (to, from, next) => authGuard(to, from, next),
   },
   {
     path: '/planner',
     name: 'planner',
-    component: () => import('@/components/Planner.vue'),
+    component: () => import('@/views/PlannerView.vue'),
     beforeEnter: (to, from, next) => authGuard(to, from, next),
   },
 ]
