@@ -92,12 +92,12 @@
       </nav>
 
       <div class="items-center hidden space-x-4 lg:flex">
-        <a
+        <button
           class="px-5 py-2 text-sm font-semibold text-gray-600 bg-gray-100 hover:text-green-600 hover:bg-gray-300 rounded-lg"
-          href="/login"
+          @click="logout"
         >
           Log out
-        </a>
+        </button>
       </div>
     </div>
 
@@ -111,3 +111,16 @@
     </div> -->
   </header>
 </template>
+
+<script>
+import Cookies from 'js-cookie'
+
+export default {
+  methods: {
+    logout() {
+      Cookies.remove('access_token', { expires: 1 })
+      this.$router.push('/login')
+    },
+  },
+}
+</script>

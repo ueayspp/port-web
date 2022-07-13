@@ -1,17 +1,4 @@
 <template>
-  <!--
-  This component uses @tailwindcss/forms
-
-  yarn add @tailwindcss/forms
-  npm install @tailwindcss/forms
-
-  plugins: [require('@tailwindcss/forms')]
-
-  .vue
-  username: ueay
-  password: 12345678
--->
-
   <div class="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
     <div class="max-w-lg mx-auto">
       <h1 class="text-2xl font-bold text-center text-emerald-600 sm:text-3xl">Get started today</h1>
@@ -21,8 +8,8 @@
         inventore quaerat mollitia?
       </p>
 
-      <form @submit.prevent="login" class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl">
-        <p class="text-lg font-bold">Sign in to your account</p>
+      <form @submit.prevent="register" class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl">
+        <p class="text-lg font-bold">Create your account</p>
 
         <div>
           <label for="email" class="text-sm font-medium">Email</label>
@@ -92,12 +79,12 @@
           type="submit"
           class="block w-full px-5 py-3 text-sm font-medium text-white bg-emerald-600 rounded-lg"
         >
-          Sign in
+          Sign up
         </button>
 
         <p class="text-sm text-center text-gray-500">
-          No account?
-          <a class="underline" href="/signup">Sign up</a>
+          Already have account?
+          <a class="underline" href="/login">Sign In</a>
         </p>
       </form>
     </div>
@@ -105,8 +92,7 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
-import Cookies from 'js-cookie'
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 
 export default {
   data() {
@@ -116,17 +102,12 @@ export default {
     }
   },
   methods: {
-    b64EncodeUnicode(str) {
-      return btoa(str)
-    },
-    login() {
+    register() {
       const auth = getAuth()
-      signInWithEmailAndPassword(auth, this.email, this.password)
+      createUserWithEmailAndPassword(auth, this.email, this.password)
         .then((userCredential) => {
           const user = userCredential.user
-          alert('Successfully logged in')
-          const token = this.b64EncodeUnicode(this.email)
-          Cookies.set('access_token', token, { expires: 1 })
+          alert('Successfully registered!')
           this.$router.push('/')
         })
         .catch((error) => {
