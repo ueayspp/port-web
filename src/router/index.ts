@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import DiaryView from '@/views/DiaryView.vue'
 import { authGuard } from './auth-guard'
 
@@ -8,14 +7,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     name: 'home',
     component: DiaryView,
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    beforeEnter: (to, from, next) => authGuard(to, from, next),
   },
   {
     path: '/signup',

@@ -21,8 +21,8 @@
         inventore quaerat mollitia?
       </p>
 
-      <form action="" class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl">
-        <p class="text-lg font-medium">Sign in to your account</p>
+      <form @submit.prevent="login" class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl">
+        <p class="text-lg font-bold">Sign in to your account</p>
 
         <div>
           <label for="email" class="text-sm font-medium">Email</label>
@@ -89,25 +89,23 @@
         </div>
 
         <button
-          type="button"
+          type="submit"
           class="block w-full px-5 py-3 text-sm font-medium text-white bg-emerald-600 rounded-lg"
-          @click="btnSignin_click"
         >
           Sign in
         </button>
 
         <p class="text-sm text-center text-gray-500">
           No account?
-          <a class="underline" href="">Sign up</a>
+          <a class="underline" href="/signup">Sign up</a>
         </p>
       </form>
-
-      <p>Email: {{ email }} Password: {{ password }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import Cookies from 'js-cookie'
 
 export default {
@@ -121,21 +119,22 @@ export default {
     b64EncodeUnicode(str) {
       return btoa(str)
     },
-    btnSignin_click() {
-      var email_user = this.email
-      var pass_user = this.password
-      if (
-        email_user === process.env.VUE_APP_USERNAME &&
-        pass_user === process.env.VUE_APP_PASSWORD
-      ) {
-        const token = this.b64EncodeUnicode(email_user)
-        alert(`Hello World`)
-        Cookies.set('access_token', token, { expires: 1 })
-      }
+    login() {
+      const auth = getAuth()
+      signInWithEmailAndPassword(auth, this.email, this.password)
+        .then((userCredential) => {
+          const user = userCredential.user
+          alert('Successfully logged in')
+          const token = this.b64EncodeUnicode(this.email)
+          Cookies.set('access_token', token, { expires: 1 })
+          this.$router.push('/')
+        })
+        .catch((error) => {
+          const errorCode = error.code
+          const errorMessage = error.message
+          alert(errorMessage)
+        })
     },
-  },
-  mounted() {
-    console.log('env, ')
   },
 }
 </script>
