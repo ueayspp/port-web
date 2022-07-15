@@ -10,7 +10,7 @@
         <button type="submit" @click.prevent="addTodo" class="new-todo-button">Add</button>
       </form>
       <ul class="todo-list">
-        <li v-for="todo in todos" :key="todo.content" ref="todo" class="todo-item">
+        <li v-for="todo in todos" :key="todo.content" class="todo-item">
           <label class="todo-item-label">
             <!-- checkbox -->
             <input v-model="todo.done" type="checkbox" class="todo-item__checkbox" />
@@ -18,10 +18,10 @@
             {{ todo.content }}
           </label>
           <div>
-            <button @click="editTodo(todo)" class="todo-button">
+            <button @click.prevent="editTodo(todo.id)" class="todo-button">
               <img src="@/assets/pencil.svg" alt="Edit todo" />
             </button>
-            <button @click="deleteTodo(todo)" class="todo-button">
+            <button @click.prevent="deleteTodo(todo.id)" class="todo-button">
               <img src="@/assets/trash.svg" alt="Delete todo" />
             </button>
           </div>
@@ -65,10 +65,14 @@ export default {
 
       onSnapshot(colRef, (snap) => {
         snap.forEach((doc) => {
+          let todoData = doc.data()
+          todoData.id = doc.id
           console.log(doc.id, ' => ', doc.data())
-          this.todos.push(doc.data())
+          this.todos.push(todoData)
         })
       })
+
+      console.log(this.todos)
 
       // const querySnapshot = await getDocs(colRef)
       // querySnapshot.forEach((doc) => {
@@ -88,9 +92,11 @@ export default {
       //     console.error('Error updating document: ', error)
       //   })
     },
-    async deleteTodo() {
+    async deleteTodo(todoID) {
       // retrieve all the documents within the collection or subcollection and delete them
-      await deleteDoc(doc(db, 'todos', this.$refs.todo))
+      const colRef = collection(db, 'todos')
+      const todoRef = doc(colRef, todoID)
+      await deleteDoc(todoRef)
     },
   },
 }
