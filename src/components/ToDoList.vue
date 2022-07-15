@@ -7,23 +7,24 @@
           New Todo:
           <input v-model="newTodo" type="text" class="new-todo-input" />
         </label>
-        <button type="submit" @click.prevent="addTodo" class="new-todo-button">Add</button>
+        <button type="submit" @click="addTodo" class="new-todo-button">Add</button>
       </form>
       <ul class="todo-list">
-        <li v-for="todo in todos" :key="todo.content" class="todo-item">
+        <li v-for="todo in todos" :key="todo.content" ref="todo" class="todo-item">
           <label class="todo-item-label">
             <!-- checkbox -->
-            <input v-model="todo.done" type="checkbox" class="focus:ring-0 mr-2" />
+            <input v-model="todo.done" type="checkbox" class="todo-item__checkbox" />
             <!-- todo content -->
             {{ todo.content }}
-            <!-- delete -->
-            <!-- <button
-              @click.prevent="deleteTodo"
-              class="text-white font-medium px-3 py-1 bg-red-500 hover:bg-red-700 rounded-md"
-            >
-              delete
-            </button> -->
           </label>
+          <div>
+            <button @click="editTodo(todo)" class="todo-button">
+              <img src="@/assets/pencil.svg" alt="Edit todo" />
+            </button>
+            <button @click="deleteTodo(todo)" class="todo-button">
+              <img src="@/assets/trash.svg" alt="Delete todo" />
+            </button>
+          </div>
         </li>
       </ul>
     </section>
@@ -32,7 +33,7 @@
 
 <script>
 import { db } from '@/main'
-import { collection, addDoc, onSnapshot } from 'firebase/firestore'
+import { collection, addDoc, onSnapshot, doc, deleteDoc } from 'firebase/firestore'
 
 export default {
   name: 'todolist',
@@ -87,8 +88,9 @@ export default {
       //     console.error('Error updating document: ', error)
       //   })
     },
-    async deleteTodo(todo) {
-      //
+    async deleteTodo() {
+      // retrieve all the documents within the collection or subcollection and delete them
+      await deleteDoc(doc(db, 'todos', this.$refs.todo))
     },
   },
 }
@@ -191,5 +193,14 @@ a {
 .todo-list {
   max-width: 100%;
   margin: 2rem auto;
+}
+.todo-button {
+  background: transparent;
+  border: 0;
+  padding: 0.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 3px;
+  cursor: pointer;
 }
 </style>
