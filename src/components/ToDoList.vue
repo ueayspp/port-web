@@ -7,7 +7,7 @@
           New Todo:
           <input v-model="newTodo" type="text" class="new-todo-input" />
         </label>
-        <button type="submit" @click="addTodo" class="new-todo-button">Add</button>
+        <button type="submit" @click.prevent="addTodo" class="new-todo-button">Add</button>
       </form>
       <ul class="todo-list">
         <li v-for="todo in todos" :key="todo.content" ref="todo" class="todo-item">
