@@ -7,24 +7,35 @@
           New Todo:
           <input v-model="newTodo" type="text" class="new-todo-input" />
         </label>
-        <button type="submit" @click.prevent="addTodo" class="new-todo-button">Add</button>
+        <button type="submit" class="new-todo-button" @click.prevent="addTodo">Add</button>
       </form>
       <ul class="todo-list">
-        <li v-for="todo in todos" :key="todo.content" ref="todo" class="todo-item">
-          <label class="todo-item-label">
-            <!-- checkbox -->
+        <li v-for="todo in todos" :key="todo.id" class="todo-item">
+          <!-- check if currentlyEditing or not -->
+          <!-- if !currentlyEditing => display checkbox, todoContent -->
+          <label v-if="currentlyEditing !== todo.id" class="todo-item-label">
             <input v-model="todo.done" type="checkbox" class="todo-item__checkbox" />
-            <!-- todo content -->
             {{ todo.content }}
           </label>
-          <div>
-            <button @click="editTodo(todo)" class="todo-button">
+
+          <!-- if !currentlyEditing => display editBtn, delBtn -->
+          <div v-if="currentlyEditing !== todo.id">
+            <button class="todo-button" @click.prevent="editTodo(todo)">
               <img src="@/assets/pencil.svg" alt="Edit todo" />
             </button>
-            <button @click="deleteTodo(todo)" class="todo-button">
+            <button class="todo-button" @click.prevent="deleteTodo(todo.id)">
               <img src="@/assets/trash.svg" alt="Delete todo" />
             </button>
           </div>
+
+          <!-- if currentlyEditing => display editForm, saveBtn -->
+          <form v-else class="edit-todo-form">
+            <label class="edit-todo-label">
+              Edit:
+              <input v-model.trim="editTodoText" type="text" class="edit-todo-input" />
+            </label>
+            <button type="submit" class="edit-todo-button" @click.prevent="updateTodo">Save</button>
+          </form>
         </li>
       </ul>
     </section>
@@ -33,7 +44,7 @@
 
 <script>
 import { db } from '@/main'
-import { collection, addDoc, onSnapshot, doc, deleteDoc } from 'firebase/firestore'
+import { collection, addDoc, onSnapshot, doc, deleteDoc, updateDoc } from 'firebase/firestore'
 
 export default {
   name: 'todolist',
@@ -41,6 +52,8 @@ export default {
     return {
       newTodo: '',
       todos: [],
+      currentlyEditing: null,
+      editTodoText: '',
     }
   },
   created() {
@@ -65,10 +78,14 @@ export default {
 
       onSnapshot(colRef, (snap) => {
         snap.forEach((doc) => {
+          let todoData = doc.data()
+          todoData.id = doc.id
           console.log(doc.id, ' => ', doc.data())
-          this.todos.push(doc.data())
+          this.todos.push(todoData)
         })
       })
+
+      console.log(this.todos)
 
       // const querySnapshot = await getDocs(colRef)
       // querySnapshot.forEach((doc) => {
@@ -77,20 +94,23 @@ export default {
       //   this.todos.push(doc.data())
       // })
     },
-    async updateTodo(todo) {
-      // collection(db, 'todos')
-      //   .doc(todo.id)
-      //   .update({ ...todo })
-      //   .then(function (docRef) {
-      //     console.log('Updated document with ID: ', docRef.id)
-      //   })
-      //   .catch(function (error) {
-      //     console.error('Error updating document: ', error)
-      //   })
+    async editTodo(todo) {
+      this.currentlyEditing = todo.id
+      this.editTodoText = todo.content
+      console.log('Current doc ID: ', this.currentlyEditing)
+
+      return this.currentlyEditing
     },
-    async deleteTodo() {
-      // retrieve all the documents within the collection or subcollection and delete them
-      await deleteDoc(doc(db, 'todos', this.$refs.todo))
+    async updateTodo() {
+      await updateDoc(doc(db, 'todos', this.currentlyEditing), {
+        content: this.editTodoText,
+      })
+    },
+    async deleteTodo(todoID) {
+      // retrieve all the documents and delete them
+      const colRef = collection(db, 'todos')
+      const todoRef = doc(colRef, todoID)
+      await deleteDoc(todoRef)
     },
   },
 }
@@ -166,6 +186,37 @@ a {
   font-weight: bold;
   background: #42b983;
   flex: 1;
+  margin-left: 1rem;
+  border: 1px solid #42b983;
+}
+
+.edit-todo-form {
+  width: 100%;
+  justify-content: space-between;
+  display: flex;
+  padding: 1rem;
+}
+.edit-todo-label {
+  flex: 1;
+  text-align: left;
+  display: flex;
+  align-items: center;
+}
+.edit-todo-input {
+  padding: 0.5rem;
+  border-radius: 3px;
+  border: 1px solid lightgrey;
+  font-size: 1rem;
+  font-weight: normal;
+  flex: 1;
+  margin-left: 1rem;
+}
+.edit-todo-button {
+  font-size: 1rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 3px;
+  color: #42b983;
+  font-weight: bold;
   margin-left: 1rem;
   border: 1px solid #42b983;
 }
